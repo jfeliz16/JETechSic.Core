@@ -1,0 +1,1 @@
+dotnet ef dbcontext scaffold "Server=CAMSQLSRV\SQL2K19DEV;Database=ing_easybank_2020;user id=admin;password=hola;" Microsoft.EntityFrameworkCore.SqlServer -o "Data\DbModel" -c EasyBankDbContext -f  --use-database-names
