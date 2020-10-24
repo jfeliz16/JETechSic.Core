@@ -108,14 +108,21 @@ namespace JETech.SIC.Core.User.Helper
 
         public async Task<SignInResult> LoginAsync(LoginModel model)
         {
-            if (string.IsNullOrEmpty(model.Username)) throw new JETechException("Usuario no pueder nulo.");
-            if (string.IsNullOrEmpty(model.Password)) throw new JETechException("Contraseña no pueder nulo.");
+            try
+            {
+                if (string.IsNullOrEmpty(model.Username)) throw new JETechException("Usuario no pueder nulo.");
+                if (string.IsNullOrEmpty(model.Password)) throw new JETechException("Contraseña no puede ser nulo.");
 
-            return await _signInManager.PasswordSignInAsync(
-                model.Username,
-                model.Password,
-                model.RememberMe,
-                false);
+                return await _signInManager.PasswordSignInAsync(
+                    model.Username,
+                    model.Password,
+                    model.RememberMe,
+                    false);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         public async Task LogoutAsync()
