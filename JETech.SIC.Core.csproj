@@ -10,11 +10,8 @@
     <Folder Include="Administration\Interfaces\" />
     <Folder Include="Administration\Models\" />
     <Folder Include="Administration\Services\" />
-    <Folder Include="Clients\Domain\" />
     <Folder Include="Clients\Helper\" />
     <Folder Include="Clients\Interfaces\" />
-    <Folder Include="Clients\Models\" />
-    <Folder Include="Clients\Services\" />
     <Folder Include="Data\Entities\" />
   </ItemGroup>
 
@@ -30,9 +27,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="JETech.NetCoreWeb">
-      <HintPath>..\..\JETech.NetCoreWeb\JETech.NetCoreWeb\bin\Debug\netcoreapp3.1\JETech.NetCoreWeb.dll</HintPath>
-    </Reference>
+    <ProjectReference Include="..\..\NetCoreWeb\JETech.NetCoreWeb\JETech.NetCoreWeb.csproj" />
   </ItemGroup>
 
   <ItemGroup>
