@@ -5,12 +5,13 @@ using System.Text;
 using System.Threading.Tasks;
 using JETech.SIC.Core.Clients.Models;
 using System.Linq;
+using JETech.SIC.Core.Clients.Interfaces;
 
 namespace JETech.SIC.Core.Clients.Services
 {
-    public class ClientService
+    public class ClientService : IClientService
     {
-        public async Task<ActionPaginationResult<IQueryable<ClientModel>>> GetClients(ActionQueryArgs<ClientModel> args) 
+        public async Task<ActionPaginationResult<IQueryable<ClientModel>>> GetClients(ActionQueryArgs<ClientModel> args)
         {
             try
             {
