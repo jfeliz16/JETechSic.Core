@@ -6,16 +6,19 @@ using System.Threading.Tasks;
 using JETech.SIC.Core.Clients.Models;
 using System.Linq;
 using JETech.NetCoreWeb.Helper;
+using JETech.SIC.Core.Data.Entities;
 
 namespace JETech.SIC.Core.Clients.Domain
 {
     public class Client
     {
         private readonly ActionHelper _actionHelper;
-        
-        public Client() 
+        private readonly DataContext _dataContext;
+
+        public Client(DataContext dataContext) 
         {
             _actionHelper = new ActionHelper();
+            _dataContext = dataContext;
         }
 
         public async Task<ActionPaginationResult<IQueryable<Clients.Models.ClientModel>>> GetClients(ActionQueryArgs<ClientModel> args)
@@ -37,6 +40,14 @@ namespace JETech.SIC.Core.Clients.Domain
                     });
                     id += 1;
                 }
+                //if (!string.IsNullOrEmpty( args.CondictionString))
+                //{
+                //    listClient.Where(args.CondictionString);
+                //}
+
+                
+
+                //_dataContext.Users.sql(args.CondictionString);
 
                 return _actionHelper.GetPaginationResult<ClientModel>(args, listClient.AsQueryable());
             }
