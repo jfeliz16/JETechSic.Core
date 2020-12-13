@@ -41,15 +41,10 @@ namespace JETech.SIC.Core.Clients.Domain
                     id += 1;
                 }
                 var result = listClient.AsQueryable();
-
-                if (!string.IsNullOrEmpty(args.CondictionString))
-                {
-
-                }
+            
                 if (args.Condiction != null)
                 {
-                    result = result.Where(args.Condiction);
-                    result = result.Where(c => !c.CellPhone.Equals(null) && c.CellPhone.Contains("ds"));
+                    result = result.Where(args.Condiction);                    
                 }
 
                 return _actionHelper.GetPaginationResult<ClientModel>(args, result);
