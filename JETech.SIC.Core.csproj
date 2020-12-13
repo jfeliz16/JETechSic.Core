@@ -11,7 +11,6 @@
     <Folder Include="Administration\Models\" />
     <Folder Include="Administration\Services\" />
     <Folder Include="Clients\Helper\" />
-    <Folder Include="Data\Entities\" />
   </ItemGroup>
 
   <ItemGroup>

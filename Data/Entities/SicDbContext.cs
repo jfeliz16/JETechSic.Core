@@ -8,13 +8,13 @@ using JETech.SIC.Core.Data;
 
 namespace JETech.SIC.Core.Data.Entities
 {
-    public class DataContext : IdentityDbContext<User>
+    public class SicDbContext : IdentityDbContext<User>
     {
-        public DataContext() : base()
+        public SicDbContext() : base()
         {
         }
 
-        public DataContext(DbContextOptions<DataContext> opcions):base(opcions)
+        public SicDbContext(DbContextOptions<SicDbContext> opcions):base(opcions)
         {
         }
 

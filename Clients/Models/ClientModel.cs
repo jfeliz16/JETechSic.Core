@@ -22,7 +22,7 @@ namespace JETech.SIC.Core.Clients.Models
 
         public string HomePhone { get; set; }
 
-        public string CellPhome { get; set; }
+        public string CellPhone { get; set; }
 
         public string Fax { get; set; }
 

@@ -13,12 +13,12 @@ namespace JETech.SIC.Core.Clients.Domain
     public class Client
     {
         private readonly ActionHelper _actionHelper;
-        private readonly DataContext _dataContext;
+        private readonly SicDbContext _dbContext;
 
-        public Client(DataContext dataContext) 
+        public Client(SicDbContext sicDb) 
         {
             _actionHelper = new ActionHelper();
-            _dataContext = dataContext;
+            _dbContext = sicDb;
         }
 
         public async Task<ActionPaginationResult<IQueryable<Clients.Models.ClientModel>>> GetClients(ActionQueryArgs<ClientModel> args)
@@ -40,16 +40,19 @@ namespace JETech.SIC.Core.Clients.Domain
                     });
                     id += 1;
                 }
-                //if (!string.IsNullOrEmpty( args.CondictionString))
-                //{
-                //    listClient.Where(args.CondictionString);
-                //}
+                var result = listClient.AsQueryable();
 
-                
+                if (!string.IsNullOrEmpty(args.CondictionString))
+                {
 
-                //_dataContext.Users.sql(args.CondictionString);
+                }
+                if (args.Condiction != null)
+                {
+                    result = result.Where(args.Condiction);
+                    result = result.Where(c => !c.CellPhone.Equals(null) && c.CellPhone.Contains("ds"));
+                }
 
-                return _actionHelper.GetPaginationResult<ClientModel>(args, listClient.AsQueryable());
+                return _actionHelper.GetPaginationResult<ClientModel>(args, result);
             }
             catch (Exception ex)
             {
@@ -58,3 +61,4 @@ namespace JETech.SIC.Core.Clients.Domain
         }
     }
 }
+

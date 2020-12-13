@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace JETech.SIC.Core.Migrations
 {
-    [DbContext(typeof(DataContext))]
+    [DbContext(typeof(SicDbContext))]
     partial class DataContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

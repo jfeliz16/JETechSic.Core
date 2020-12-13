@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace JETech.SIC.Core.Migrations
 {
-    [DbContext(typeof(DataContext))]
+    [DbContext(typeof(SicDbContext))]
     [Migration("20200828150938_initDB")]
     partial class initDB
     {
