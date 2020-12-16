@@ -18,6 +18,12 @@ namespace JETech.SIC.Core.Data.Entities
         {
         }
 
+        public DbSet<Contry> Contries { get; set; }
+        public DbSet<City> Cities { get; set; }
+        public DbSet<Status> Statues { get; set; }
+        public DbSet<Person> Persons { get; set; }
+        public DbSet<Attribute> Attributes { get; set; }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
