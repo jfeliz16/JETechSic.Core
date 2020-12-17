@@ -1,5 +1,4 @@
-﻿using JETech.SIC.Core.Exceptions;
-using JETech.SIC.Core.User.Helper;
+﻿using JETech.SIC.Core.User.Helper;
 using JETech.SIC.Core.User.Interfaces;
 using JETech.SIC.Core.User.Models;
 using Microsoft.AspNetCore.Identity;

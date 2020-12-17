@@ -1,4 +1,5 @@
 ﻿using JETech.NetCoreWeb;
+using JETech.NetCoreWeb.Types;
 using JETech.SIC.Core.Clients.Models;
 using System.Linq;
 using System.Threading.Tasks;

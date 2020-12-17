@@ -1,5 +1,5 @@
-﻿using JETech.SIC.Core.Data.Entities;
-using JETech.SIC.Core.Exceptions;
+﻿using JETech.NetCoreWeb.Exceptions;
+using JETech.SIC.Core.Data.Entities;
 using JETech.SIC.Core.Global;
 using JETech.SIC.Core.User.Models;
 using Microsoft.AspNetCore.Identity;
@@ -45,28 +45,28 @@ namespace JETech.SIC.Core.User.Helper
             {
                 if (string.IsNullOrWhiteSpace(user.FirstName)) 
                 {
-                    throw new JETechException(Global.Messages.NullField, "Nombres"); 
+                    throw new JETechException("This field {0} is required.", "Nombres"); 
                 }
                 if (string.IsNullOrWhiteSpace(user.LastName)) 
                 {
-                    throw new JETechException(Global.Messages.NullField, "Apellidos"); 
+                    throw new JETechException("This field {0} is required.", "Apellidos"); 
                 }
                 if (string.IsNullOrWhiteSpace(user.UserName)) 
                 { 
-                    throw new JETechException(Global.Messages.NullField, "Usuario");
+                    throw new JETechException("This field {0} is required.", "Usuario");
                 }
                 if (string.IsNullOrWhiteSpace(user.Password)) 
                 { 
-                    throw new JETechException(Global.Messages.NullField, "Contraseña");
+                    throw new JETechException("This field {0} is required.", "Contraseña");
                 }
                 if (user.Password != user.PasswordConfirm) 
                 { 
-                    throw new JETechException(Global.Messages.NullField, "Contraseña"); 
+                    throw new JETechException("This field {0} is required.", "Contraseña"); 
                 }
 
                 var userFinded = await GetUserByEmailAsync(user.UserName);
 
-                if (userFinded != null) throw new JETechException(Global.Messages.NullField); 
+                if (userFinded != null) throw new JETechException("This field {0} is required."); 
 
                 var userEntity = UserConverter.ToUser(user);
 
@@ -110,8 +110,8 @@ namespace JETech.SIC.Core.User.Helper
         {
             try
             {
-                if (string.IsNullOrEmpty(model.Username)) throw new JETechException("Usuario no pueder nulo.");
-                if (string.IsNullOrEmpty(model.Password)) throw new JETechException("Contraseña no puede ser nulo.");
+                if (string.IsNullOrEmpty(model.Username)) throw new JETechException("This field {0} is required.", "Username");
+                if (string.IsNullOrEmpty(model.Password)) throw new JETechException("This field {0} is required.", "Password");
 
                 return await _signInManager.PasswordSignInAsync(
                     model.Username,

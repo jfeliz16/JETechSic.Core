@@ -7,6 +7,7 @@ using JETech.SIC.Core.Clients.Models;
 using System.Linq;
 using JETech.SIC.Core.Clients.Interfaces;
 using JETech.SIC.Core.Data.Entities;
+using JETech.NetCoreWeb.Types;
 
 namespace JETech.SIC.Core.Clients.Services
 {
@@ -24,7 +25,7 @@ namespace JETech.SIC.Core.Clients.Services
         {
             try
             {
-                return await _client.GetClients(args);
+                return await _client.Get(args);
             }
             catch (Exception)
             {
