@@ -23,6 +23,7 @@ namespace JETech.SIC.Core.Data.Entities
         public DbSet<Status> Statues { get; set; }
         public DbSet<Person> Persons { get; set; }
         public DbSet<Attribute> Attributes { get; set; }
+        public DbSet<Client> Clients { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

@@ -9,18 +9,19 @@ using JETech.NetCoreWeb.Helper;
 using JETech.SIC.Core.Data.Entities;
 using JETech.NetCoreWeb.Types;
 using JETech.SIC.Core.Global;
+using Microsoft.EntityFrameworkCore;
 
 namespace JETech.SIC.Core.Clients.Domain
 {
     public class Client
     {
         private readonly ActionHelper _actionHelper;
-        private readonly SicDbContext _dbContext;
+        private readonly SicDbContext _sicDb;
 
         public Client(SicDbContext sicDb)
         {
             _actionHelper = new ActionHelper();
-            _dbContext = sicDb;
+            _sicDb = sicDb;
         }
 
         public async Task<ActionResult<ClientModel>> Create(ActionArgs<ClientModel> args) 
@@ -45,9 +46,9 @@ namespace JETech.SIC.Core.Clients.Domain
                      ZipCode = args.Model.ZipCode,
                 };
 
-                _dbContext.Persons.Add(cli);
+                _sicDb.Persons.Add(cli);
 
-                await _dbContext.SaveChangesAsync();
+                await _sicDb.SaveChangesAsync();
 
                 args.Model.Id = cli.Id;
 
@@ -62,24 +63,28 @@ namespace JETech.SIC.Core.Clients.Domain
         public async Task<ActionPaginationResult<IQueryable<ClientModel>>> Get(ActionQueryArgs<ClientModel> args)
         {
             try
-            {
-                List<ClientModel> listClient = new List<ClientModel>();
-                int id = 1;
-
-                for (int i = 0; i < 50; i++)
-                {
-                    listClient.Add(new ClientModel
-                    {
-                        Id = id,
-                        FullName = "Andrick Lora" + id.ToString().PadLeft(5, '*'),
-                        FirstName = "Andrick",
-                        LastName = "Lora",
-                        StatusName = "ACTIVO"
+            {               
+                var result = _sicDb.Clients
+                    .Include(p => p.Person.Status)
+                    .Select( c => new ClientModel { 
+                        Address = c.Person.Address,
+                        CellPhone = c.Person.CellPhone,
+                        City = c.Person.City.Name,
+                        Contry = c.Person.Contry.Name, 
+                        Email = c.Person.Email,
+                        Fax = c.Person.Fax,
+                        FirstName =c.Person.FirstName,
+                        FullName = c.Person.FullName,
+                        HomePhone = c.Person.HomePhone,
+                        Id  = c.Id,
+                        IdentityId = c.Person.IdentityId,
+                        LastName = c.Person.LastName,
+                        StatusId = c.Person.Status.Id,
+                        StatusName = c.Person.Status.Name,
+                        TypeIdentityId = c.Person.TypeIdentityId,
+                        ZipCode = c.Person.ZipCode
                     });
-                    id += 1;
-                }
-                var result = listClient.AsQueryable();
-            
+
                 if (args.Condiction != null)
                 {
                     result = result.Where(args.Condiction);                    
