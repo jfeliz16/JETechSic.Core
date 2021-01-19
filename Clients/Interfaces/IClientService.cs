@@ -8,6 +8,6 @@ namespace JETech.SIC.Core.Clients.Interfaces
 {
     public interface IClientService
     {
-        Task<ActionPaginationResult<IQueryable<ClientModel>>> GetClients(ActionQueryArgs<ClientModel> args);
+        ActionPaginationResult<IQueryable<ClientModel>> GetClients(ActionQueryArgs<ClientModel> args);
     }
 }

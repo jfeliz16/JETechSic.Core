@@ -60,7 +60,7 @@ namespace JETech.SIC.Core.Clients.Domain
             }
         }
 
-        public async Task<ActionPaginationResult<IQueryable<ClientModel>>> Get(ActionQueryArgs<ClientModel> args)
+        public ActionPaginationResult<IQueryable<ClientModel>> Get(ActionQueryArgs<ClientModel> args)
         {
             try
             {               

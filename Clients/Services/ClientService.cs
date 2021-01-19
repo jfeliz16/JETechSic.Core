@@ -21,11 +21,11 @@ namespace JETech.SIC.Core.Clients.Services
             _client = new Domain.Client(dbContext);
         }
 
-        public async Task<ActionPaginationResult<IQueryable<ClientModel>>> GetClients(ActionQueryArgs<ClientModel> args)
+        public ActionPaginationResult<IQueryable<ClientModel>> GetClients(ActionQueryArgs<ClientModel> args)
         {
             try
             {
-                return await _client.Get(args);
+                return _client.Get(args);
             }
             catch (Exception)
             {
